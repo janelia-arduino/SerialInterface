@@ -17,7 +17,6 @@
 
 #include <ModularServer.h>
 #include <ModularDeviceBase.h>
-#include <Parent.h>
 #include <RS232Interface.h>
 
 
