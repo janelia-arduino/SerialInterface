@@ -18,6 +18,9 @@ void RS232Interface::setup()
 {
   // Parent Setup
 
+  // Reset Watchdog
+  resetWatchdog();
+
   // Variable Setup
 
   // Set Device ID
