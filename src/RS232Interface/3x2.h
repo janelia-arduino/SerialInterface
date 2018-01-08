@@ -27,6 +27,9 @@ extern const size_t rs232_rx_pins[RS232_STREAM_COUNT];
 
 // Properties
 // Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *, (ConstantString *)[]
+extern const long baud_rates_default[RS232_STREAM_COUNT];
+
+extern const long data_bits_default[RS232_STREAM_COUNT];
 
 // Parameters
 

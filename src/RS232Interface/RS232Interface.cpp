@@ -17,6 +17,7 @@ RS232Interface::RS232Interface()
 void RS232Interface::setup()
 {
   // Parent Setup
+  ModularDeviceBase::setup();
 
   // Reset Watchdog
   resetWatchdog();
@@ -38,6 +39,13 @@ void RS232Interface::setup()
                               callbacks_);
 
   // Properties
+  modular_server::Property & baud_rates_property = modular_server_.createProperty(constants::baud_rates_property_name,constants::baud_rates_default);
+  baud_rates_property.setRange(constants::baud_rate_min,constants::baud_rate_max);
+  baud_rates_property.setArrayLengthRange(constants::RS232_STREAM_COUNT,constants::RS232_STREAM_COUNT);
+
+  modular_server::Property & data_bits_property = modular_server_.createProperty(constants::data_bits_property_name,constants::data_bits_default);
+  data_bits_property.setSubset(constants::data_bits_subset);
+  data_bits_property.setArrayLengthRange(constants::RS232_STREAM_COUNT,constants::RS232_STREAM_COUNT);
 
   // Parameters
 

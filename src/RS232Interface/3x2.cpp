@@ -28,6 +28,15 @@ const size_t rs232_rx_pins[RS232_STREAM_COUNT] =
 // Units
 
 // Properties
+const long baud_rates_default[RS232_STREAM_COUNT] =
+  {
+   baud_rate_default,
+  };
+
+const long data_bits_default[RS232_STREAM_COUNT] =
+  {
+   data_bits_element_default,
+  };
 
 // Parameters
 
