@@ -31,6 +31,10 @@ extern const long baud_rates_default[RS232_STREAM_COUNT];
 
 extern const long data_bits_default[RS232_STREAM_COUNT];
 
+extern const ConstantString * const parities_default[RS232_STREAM_COUNT];
+
+extern const long stop_bits_default[RS232_STREAM_COUNT];
+
 // Parameters
 
 // Functions

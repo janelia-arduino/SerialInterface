@@ -47,6 +47,14 @@ void RS232Interface::setup()
   data_bits_property.setSubset(constants::data_bits_subset);
   data_bits_property.setArrayLengthRange(constants::RS232_STREAM_COUNT,constants::RS232_STREAM_COUNT);
 
+  modular_server::Property & parities_property = modular_server_.createProperty(constants::parities_property_name,constants::parities_default);
+  parities_property.setSubset(constants::parity_ptr_subset);
+  parities_property.setArrayLengthRange(constants::RS232_STREAM_COUNT,constants::RS232_STREAM_COUNT);
+
+  modular_server::Property & stop_bits_property = modular_server_.createProperty(constants::stop_bits_property_name,constants::stop_bits_default);
+  stop_bits_property.setSubset(constants::stop_bits_subset);
+  stop_bits_property.setArrayLengthRange(constants::RS232_STREAM_COUNT,constants::RS232_STREAM_COUNT);
+
   // Parameters
 
   // Functions

@@ -38,6 +38,16 @@ const long data_bits_default[RS232_STREAM_COUNT] =
    data_bits_element_default,
   };
 
+const ConstantString * const parities_default[RS232_STREAM_COUNT] =
+  {
+   parity_ptr_default,
+  };
+
+const long stop_bits_default[RS232_STREAM_COUNT] =
+  {
+   stop_bits_element_default,
+  };
+
 // Parameters
 
 // Functions

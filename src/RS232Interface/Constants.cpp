@@ -44,6 +44,27 @@ modular_server::SubsetMemberType data_bits_subset[DATA_BITS_SUBSET_LENGTH] =
   };
 const long data_bits_element_default = 8;
 
+CONSTANT_STRING(parities_property_name,"parities");
+CONSTANT_STRING(parity_property_name,"parity");
+CONSTANT_STRING(parity_none,"NONE");
+CONSTANT_STRING(parity_even,"EVEN");
+CONSTANT_STRING(parity_odd,"ODD");
+modular_server::SubsetMemberType parity_ptr_subset[PARITY_SUBSET_LENGTH] =
+  {
+    {.cs_ptr=&parity_none},
+    {.cs_ptr=&parity_even},
+    {.cs_ptr=&parity_odd},
+  };
+const ConstantString * const parity_ptr_default = &parity_none;
+
+CONSTANT_STRING(stop_bits_property_name,"stopBits");
+modular_server::SubsetMemberType stop_bits_subset[STOP_BITS_SUBSET_LENGTH] =
+  {
+    {.l=1},
+    {.l=2},
+  };
+const long stop_bits_element_default = 1;
+
 // Parameters
 
 // Functions
