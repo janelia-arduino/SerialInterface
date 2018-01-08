@@ -16,6 +16,11 @@ namespace rs232_interface
 {
 namespace constants
 {
+enum{RS232_STREAM_COUNT=2};
+
+extern HardwareSerial * rs232_stream_ptrs[RS232_STREAM_COUNT];
+extern const size_t rs232_rx_pins[RS232_STREAM_COUNT];
+
 // Interrupts
 
 // Units
