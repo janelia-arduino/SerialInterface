@@ -38,7 +38,7 @@ extern const long baud_rate_max;
 extern const long baud_rate_default;
 
 extern ConstantString data_bits_property_name;
-enum{DATA_BITS_SUBSET_LENGTH=4};
+enum{DATA_BITS_SUBSET_LENGTH=2};
 extern modular_server::SubsetMemberType data_bits_subset[DATA_BITS_SUBSET_LENGTH];
 extern const long data_bits_element_default;
 
@@ -58,6 +58,7 @@ extern const long stop_bits_element_default;
 // Parameters
 
 // Functions
+extern ConstantString get_rs232_stream_count_function_name;
 
 // Callbacks
 

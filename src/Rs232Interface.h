@@ -37,16 +37,21 @@ public:
   Rs232Interface();
   virtual void setup();
 
+  size_t getRs232StreamCount();
+  Stream & getRs232Stream(const size_t stream_index);
+
 private:
   modular_server::Property properties_[rs232_interface::constants::PROPERTY_COUNT_MAX];
   modular_server::Parameter parameters_[rs232_interface::constants::PARAMETER_COUNT_MAX];
   modular_server::Function functions_[rs232_interface::constants::FUNCTION_COUNT_MAX];
   modular_server::Callback callbacks_[rs232_interface::constants::CALLBACK_COUNT_MAX];
 
-  long getRs32StreamBaud(const size_t stream_index);
-  byte getRs232StreamConfig();
+  long getRs232StreamBaud(const size_t stream_index);
+  byte getRs232StreamConfig(const size_t stream_index);
+
   // Handlers
-  void resetRS232StreamHandler(const size_t stream_index);
+  void resetRs232StreamHandler(const size_t stream_index);
+  void getRs232StreamCountHandler();
 };
 
 #endif

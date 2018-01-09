@@ -37,8 +37,6 @@ const long baud_rate_default = 9600;
 CONSTANT_STRING(data_bits_property_name,"dataBits");
 modular_server::SubsetMemberType data_bits_subset[DATA_BITS_SUBSET_LENGTH] =
   {
-    {.l=5},
-    {.l=6},
     {.l=7},
     {.l=8},
   };
@@ -68,6 +66,7 @@ const long stop_bits_element_default = 1;
 // Parameters
 
 // Functions
+CONSTANT_STRING(get_rs232_stream_count_function_name,"getRs232StreamCount");
 
 // Callbacks
 
