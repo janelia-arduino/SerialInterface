@@ -1,20 +1,20 @@
 // ----------------------------------------------------------------------------
-// RS232Interface.cpp
+// Rs232Interface.cpp
 //
 //
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
-#include "../RS232Interface.h"
+#include "../Rs232Interface.h"
 
 
 using namespace rs232_interface;
 
-RS232Interface::RS232Interface()
+Rs232Interface::Rs232Interface()
 {
 }
 
-void RS232Interface::setup()
+void Rs232Interface::setup()
 {
   // Parent Setup
   ModularDeviceBase::setup();
@@ -42,22 +42,22 @@ void RS232Interface::setup()
   modular_server::Property & baud_rates_property = modular_server_.createProperty(constants::baud_rates_property_name,constants::baud_rates_default);
   baud_rates_property.setRange(constants::baud_rate_min,constants::baud_rate_max);
   baud_rates_property.setArrayLengthRange(constants::RS232_STREAM_COUNT,constants::RS232_STREAM_COUNT);
-  baud_rates_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<const size_t> *)0,*this,&RS232Interface::resetRS232StreamHandler));
+  baud_rates_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<const size_t> *)0,*this,&Rs232Interface::resetRS232StreamHandler));
 
   modular_server::Property & data_bits_property = modular_server_.createProperty(constants::data_bits_property_name,constants::data_bits_default);
   data_bits_property.setSubset(constants::data_bits_subset);
   data_bits_property.setArrayLengthRange(constants::RS232_STREAM_COUNT,constants::RS232_STREAM_COUNT);
-  data_bits_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<const size_t> *)0,*this,&RS232Interface::resetRS232StreamHandler));
+  data_bits_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<const size_t> *)0,*this,&Rs232Interface::resetRS232StreamHandler));
 
   modular_server::Property & parities_property = modular_server_.createProperty(constants::parities_property_name,constants::parities_default);
   parities_property.setSubset(constants::parity_ptr_subset);
   parities_property.setArrayLengthRange(constants::RS232_STREAM_COUNT,constants::RS232_STREAM_COUNT);
-  parities_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<const size_t> *)0,*this,&RS232Interface::resetRS232StreamHandler));
+  parities_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<const size_t> *)0,*this,&Rs232Interface::resetRS232StreamHandler));
 
   modular_server::Property & stop_bits_property = modular_server_.createProperty(constants::stop_bits_property_name,constants::stop_bits_default);
   stop_bits_property.setSubset(constants::stop_bits_subset);
   stop_bits_property.setArrayLengthRange(constants::RS232_STREAM_COUNT,constants::RS232_STREAM_COUNT);
-  stop_bits_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<const size_t> *)0,*this,&RS232Interface::resetRS232StreamHandler));
+  stop_bits_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<const size_t> *)0,*this,&Rs232Interface::resetRS232StreamHandler));
 
   // Parameters
 
@@ -89,7 +89,7 @@ void RS232Interface::setup()
 // modular_server_.property(property_name).getElementValue(element_index,value) value type must match the property array element default type
 // modular_server_.property(property_name).setElementValue(element_index,value) value type must match the property array element default type
 
-void RS232Interface::resetRS232StreamHandler(const size_t stream_index)
+void Rs232Interface::resetRS232StreamHandler(const size_t stream_index)
 {
 
 }

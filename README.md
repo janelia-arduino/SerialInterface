@@ -1,4 +1,4 @@
-# RS232Interface
+# Rs232Interface
 
 Authors:
 

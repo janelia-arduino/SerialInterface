@@ -14,7 +14,7 @@ namespace constants
 {
 CONSTANT_STRING(device_name,"rs232_interface");
 
-CONSTANT_STRING(firmware_name,"RS232Interface");
+CONSTANT_STRING(firmware_name,"Rs232Interface");
 // Use semantic versioning http://semver.org/
 const modular_server::FirmwareInfo firmware_info =
   {

@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// RS232Interface.h
+// Rs232Interface.h
 //
 //
 // Authors:
@@ -28,13 +28,13 @@
 #include <ModularServer.h>
 #include <ModularDeviceBase.h>
 
-#include "RS232Interface/Constants.h"
+#include "Rs232Interface/Constants.h"
 
 
-class RS232Interface : public ModularDeviceBase
+class Rs232Interface : public ModularDeviceBase
 {
 public:
-  RS232Interface();
+  Rs232Interface();
   virtual void setup();
 
 private:
