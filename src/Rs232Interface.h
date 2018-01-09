@@ -47,7 +47,7 @@ private:
   modular_server::Callback callbacks_[rs232_interface::constants::CALLBACK_COUNT_MAX];
 
   long getRs232StreamBaud(const size_t stream_index);
-  byte getRs232StreamConfig(const size_t stream_index);
+  byte getRs232StreamSetting(const size_t stream_index);
 
   // Handlers
   void resetRs232StreamHandler(const size_t stream_index);

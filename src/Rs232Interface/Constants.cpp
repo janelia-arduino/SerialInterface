@@ -29,39 +29,28 @@ const modular_server::FirmwareInfo firmware_info =
 // Units
 
 // Properties
-CONSTANT_STRING(baud_rates_property_name,"baudRates");
-const long baud_rate_min = 300;
-const long baud_rate_max = 1000000;
-const long baud_rate_default = 9600;
+CONSTANT_STRING(rs232_bauds_property_name,"rs232Bauds");
+const long rs232_baud_min = 300;
+const long rs232_baud_max = 1000000;
+const long rs232_baud_default = 9600;
 
-CONSTANT_STRING(data_bits_property_name,"dataBits");
-modular_server::SubsetMemberType data_bits_subset[DATA_BITS_SUBSET_LENGTH] =
+CONSTANT_STRING(rs232_settings_property_name,"rs232Settings");
+CONSTANT_STRING(rs232_setting_7e1,"7E1");
+CONSTANT_STRING(rs232_setting_7o1,"7O1");
+CONSTANT_STRING(rs232_setting_8n1,"8N1");
+CONSTANT_STRING(rs232_setting_8n2,"8N2");
+CONSTANT_STRING(rs232_setting_8e1,"8E1");
+CONSTANT_STRING(rs232_setting_8o1,"8O1");
+modular_server::SubsetMemberType rs232_setting_ptr_subset[RS232_SETTING_SUBSET_LENGTH] =
   {
-    {.l=7},
-    {.l=8},
+    {.cs_ptr=&rs232_setting_7e1},
+    {.cs_ptr=&rs232_setting_7o1},
+    {.cs_ptr=&rs232_setting_8n1},
+    {.cs_ptr=&rs232_setting_8n2},
+    {.cs_ptr=&rs232_setting_8e1},
+    {.cs_ptr=&rs232_setting_8o1},
   };
-const long data_bits_element_default = 8;
-
-CONSTANT_STRING(parities_property_name,"parities");
-CONSTANT_STRING(parity_property_name,"parity");
-CONSTANT_STRING(parity_none,"NONE");
-CONSTANT_STRING(parity_even,"EVEN");
-CONSTANT_STRING(parity_odd,"ODD");
-modular_server::SubsetMemberType parity_ptr_subset[PARITY_SUBSET_LENGTH] =
-  {
-    {.cs_ptr=&parity_none},
-    {.cs_ptr=&parity_even},
-    {.cs_ptr=&parity_odd},
-  };
-const ConstantString * const parity_ptr_default = &parity_none;
-
-CONSTANT_STRING(stop_bits_property_name,"stopBits");
-modular_server::SubsetMemberType stop_bits_subset[STOP_BITS_SUBSET_LENGTH] =
-  {
-    {.l=1},
-    {.l=2},
-  };
-const long stop_bits_element_default = 1;
+const ConstantString * const rs232_setting_ptr_default = &rs232_setting_8n1;
 
 // Parameters
 

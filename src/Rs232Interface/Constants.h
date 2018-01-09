@@ -16,7 +16,7 @@ namespace rs232_interface
 namespace constants
 {
 //MAX values must be >= 1, >= created/copied count, < RAM limit
-enum{PROPERTY_COUNT_MAX=4};
+enum{PROPERTY_COUNT_MAX=2};
 enum{PARAMETER_COUNT_MAX=1};
 enum{FUNCTION_COUNT_MAX=1};
 enum{CALLBACK_COUNT_MAX=1};
@@ -32,28 +32,21 @@ extern const modular_server::FirmwareInfo firmware_info;
 
 // Properties
 // Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *, (ConstantString *)[]
-extern ConstantString baud_rates_property_name;
-extern const long baud_rate_min;
-extern const long baud_rate_max;
-extern const long baud_rate_default;
+extern ConstantString rs232_bauds_property_name;
+extern const long rs232_baud_min;
+extern const long rs232_baud_max;
+extern const long rs232_baud_default;
 
-extern ConstantString data_bits_property_name;
-enum{DATA_BITS_SUBSET_LENGTH=2};
-extern modular_server::SubsetMemberType data_bits_subset[DATA_BITS_SUBSET_LENGTH];
-extern const long data_bits_element_default;
-
-extern ConstantString parities_property_name;
-enum{PARITY_SUBSET_LENGTH=3};
-extern ConstantString parity_none;
-extern ConstantString parity_even;
-extern ConstantString parity_odd;
-extern modular_server::SubsetMemberType parity_ptr_subset[PARITY_SUBSET_LENGTH];
-extern const ConstantString * const parity_ptr_default;
-
-extern ConstantString stop_bits_property_name;
-enum{STOP_BITS_SUBSET_LENGTH=2};
-extern modular_server::SubsetMemberType stop_bits_subset[STOP_BITS_SUBSET_LENGTH];
-extern const long stop_bits_element_default;
+extern ConstantString rs232_settings_property_name;
+enum{RS232_SETTING_SUBSET_LENGTH=6};
+extern ConstantString rs232_setting_7e1;
+extern ConstantString rs232_setting_7o1;
+extern ConstantString rs232_setting_8n1;
+extern ConstantString rs232_setting_8n2;
+extern ConstantString rs232_setting_8e1;
+extern ConstantString rs232_setting_8o1;
+extern modular_server::SubsetMemberType rs232_setting_ptr_subset[RS232_SETTING_SUBSET_LENGTH];
+extern const ConstantString * const rs232_setting_ptr_default;
 
 // Parameters
 
