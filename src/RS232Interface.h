@@ -43,8 +43,10 @@ private:
   modular_server::Function functions_[rs232_interface::constants::FUNCTION_COUNT_MAX];
   modular_server::Callback callbacks_[rs232_interface::constants::CALLBACK_COUNT_MAX];
 
+  long getRs32StreamBaud(const size_t stream_index);
+  byte getRs232StreamConfig();
   // Handlers
-
+  void resetRS232StreamHandler(const size_t stream_index);
 };
 
 #endif
