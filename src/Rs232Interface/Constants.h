@@ -33,9 +33,9 @@ extern const modular_server::FirmwareInfo firmware_info;
 // Properties
 // Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *, (ConstantString *)[]
 extern ConstantString rs232_bauds_property_name;
-extern const long rs232_baud_min;
-extern const long rs232_baud_max;
-extern const long rs232_baud_default;
+enum{RS232_BAUD_SUBSET_LENGTH=16};
+extern modular_server::SubsetMemberType rs232_baud_subset[RS232_BAUD_SUBSET_LENGTH];
+extern const long & rs232_baud_default;
 
 extern ConstantString rs232_settings_property_name;
 enum{RS232_SETTING_SUBSET_LENGTH=6};

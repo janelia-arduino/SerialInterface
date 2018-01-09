@@ -40,7 +40,7 @@ void Rs232Interface::setup()
 
   // Properties
   modular_server::Property & rs232_bauds_property = modular_server_.createProperty(constants::rs232_bauds_property_name,constants::rs232_bauds_default);
-  rs232_bauds_property.setRange(constants::rs232_baud_min,constants::rs232_baud_max);
+  rs232_bauds_property.setSubset(constants::rs232_baud_subset);
   rs232_bauds_property.setArrayLengthRange(constants::RS232_STREAM_COUNT,constants::RS232_STREAM_COUNT);
   rs232_bauds_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<const size_t> *)0,*this,&Rs232Interface::resetRs232StreamHandler));
 
