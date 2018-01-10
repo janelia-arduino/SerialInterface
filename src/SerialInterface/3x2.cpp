@@ -10,15 +10,15 @@
 
 #if defined(__MK20DX256__)
 
-namespace rs232_interface
+namespace serial_interface
 {
 namespace constants
 {
-HardwareSerial * rs232_stream_ptrs[RS232_STREAM_COUNT] =
+HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT] =
   {
     &Serial2,
   };
-const size_t rs232_rx_pins[RS232_STREAM_COUNT] =
+const size_t serial_rx_pins[SERIAL_STREAM_COUNT] =
   {
     9,
   };
@@ -28,14 +28,14 @@ const size_t rs232_rx_pins[RS232_STREAM_COUNT] =
 // Units
 
 // Properties
-const long rs232_bauds_default[RS232_STREAM_COUNT] =
+const long serial_bauds_default[SERIAL_STREAM_COUNT] =
   {
-   rs232_baud_default,
+   serial_baud_default,
   };
 
-const ConstantString * const rs232_settings_default[RS232_STREAM_COUNT] =
+const ConstantString * const serial_settings_default[SERIAL_STREAM_COUNT] =
   {
-   rs232_setting_ptr_default,
+   serial_setting_ptr_default,
   };
 
 // Parameters

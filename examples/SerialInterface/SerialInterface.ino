@@ -18,10 +18,10 @@
 
 #include <ModularServer.h>
 #include <ModularDeviceBase.h>
-#include <Rs232Interface.h>
+#include <SerialInterface.h>
 
 
-Rs232Interface dev;
+SerialInterface dev;
 
 void setup()
 {

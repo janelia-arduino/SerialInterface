@@ -5,13 +5,13 @@
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
-#ifndef RS232_INTERFACE_CONSTANTS_H
-#define RS232_INTERFACE_CONSTANTS_H
+#ifndef SERIAL_INTERFACE_CONSTANTS_H
+#define SERIAL_INTERFACE_CONSTANTS_H
 #include <ConstantVariable.h>
 #include <ModularServer.h>
 
 
-namespace rs232_interface
+namespace serial_interface
 {
 namespace constants
 {
@@ -32,26 +32,26 @@ extern const modular_server::FirmwareInfo firmware_info;
 
 // Properties
 // Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *, (ConstantString *)[]
-extern ConstantString rs232_bauds_property_name;
-enum{RS232_BAUD_SUBSET_LENGTH=16};
-extern modular_server::SubsetMemberType rs232_baud_subset[RS232_BAUD_SUBSET_LENGTH];
-extern const long & rs232_baud_default;
+extern ConstantString serial_bauds_property_name;
+enum{SERIAL_BAUD_SUBSET_LENGTH=16};
+extern modular_server::SubsetMemberType serial_baud_subset[SERIAL_BAUD_SUBSET_LENGTH];
+extern const long & serial_baud_default;
 
-extern ConstantString rs232_settings_property_name;
-enum{RS232_SETTING_SUBSET_LENGTH=6};
-extern ConstantString rs232_setting_7e1;
-extern ConstantString rs232_setting_7o1;
-extern ConstantString rs232_setting_8n1;
-extern ConstantString rs232_setting_8n2;
-extern ConstantString rs232_setting_8e1;
-extern ConstantString rs232_setting_8o1;
-extern modular_server::SubsetMemberType rs232_setting_ptr_subset[RS232_SETTING_SUBSET_LENGTH];
-extern const ConstantString * const rs232_setting_ptr_default;
+extern ConstantString serial_settings_property_name;
+enum{SERIAL_SETTING_SUBSET_LENGTH=6};
+extern ConstantString serial_setting_7e1;
+extern ConstantString serial_setting_7o1;
+extern ConstantString serial_setting_8n1;
+extern ConstantString serial_setting_8n2;
+extern ConstantString serial_setting_8e1;
+extern ConstantString serial_setting_8o1;
+extern modular_server::SubsetMemberType serial_setting_ptr_subset[SERIAL_SETTING_SUBSET_LENGTH];
+extern const ConstantString * const serial_setting_ptr_default;
 
 // Parameters
 
 // Functions
-extern ConstantString get_rs232_stream_count_function_name;
+extern ConstantString get_serial_stream_count_function_name;
 
 // Callbacks
 
