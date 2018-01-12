@@ -38,7 +38,21 @@ public:
   virtual void setup();
 
   size_t getSerialStreamCount();
-  Stream & getSerialStream(const size_t stream_index);
+  size_t getSerialStreamIndex();
+  size_t setSerialStreamIndex(const size_t stream_index);
+  Stream & getSerialStream();
+
+  size_t write(const char data[]);
+  size_t writeBytes(const uint8_t buffer[],
+                    const size_t size);
+  size_t writeByte(const uint8_t byte);
+  size_t writeLineEnding();
+
+
+
+  void writeRead(const char data[],
+                 char response[],
+                 const size_t response_length_max);
 
 private:
   modular_server::Property properties_[serial_interface::constants::PROPERTY_COUNT_MAX];
@@ -46,12 +60,18 @@ private:
   modular_server::Function functions_[serial_interface::constants::FUNCTION_COUNT_MAX];
   modular_server::Callback callbacks_[serial_interface::constants::CALLBACK_COUNT_MAX];
 
+  size_t serial_stream_index_;
+
   long getSerialStreamBaud(const size_t stream_index);
   byte getSerialStreamSetting(const size_t stream_index);
 
   // Handlers
   void resetSerialStreamHandler(const size_t stream_index);
   void getSerialStreamCountHandler();
+  void getSerialStreamIndexHandler();
+  void setSerialStreamIndexHandler();
+  void writeHandler();
+  void writeReadHandler();
 };
 
 #endif

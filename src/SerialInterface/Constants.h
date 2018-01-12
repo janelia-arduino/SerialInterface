@@ -16,9 +16,9 @@ namespace serial_interface
 namespace constants
 {
 //MAX values must be >= 1, >= created/copied count, < RAM limit
-enum{PROPERTY_COUNT_MAX=2};
-enum{PARAMETER_COUNT_MAX=1};
-enum{FUNCTION_COUNT_MAX=1};
+enum{PROPERTY_COUNT_MAX=3};
+enum{PARAMETER_COUNT_MAX=2};
+enum{FUNCTION_COUNT_MAX=5};
 enum{CALLBACK_COUNT_MAX=1};
 
 extern ConstantString device_name;
@@ -32,26 +32,43 @@ extern const modular_server::FirmwareInfo firmware_info;
 
 // Properties
 // Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *, (ConstantString *)[]
-extern ConstantString serial_bauds_property_name;
-enum{SERIAL_BAUD_SUBSET_LENGTH=16};
-extern modular_server::SubsetMemberType serial_baud_subset[SERIAL_BAUD_SUBSET_LENGTH];
-extern const long & serial_baud_default;
+extern ConstantString bauds_property_name;
+enum{BAUD_SUBSET_LENGTH=16};
+extern modular_server::SubsetMemberType baud_subset[BAUD_SUBSET_LENGTH];
+extern const long & baud_default;
 
-extern ConstantString serial_settings_property_name;
-enum{SERIAL_SETTING_SUBSET_LENGTH=6};
-extern ConstantString serial_setting_7e1;
-extern ConstantString serial_setting_7o1;
-extern ConstantString serial_setting_8n1;
-extern ConstantString serial_setting_8n2;
-extern ConstantString serial_setting_8e1;
-extern ConstantString serial_setting_8o1;
-extern modular_server::SubsetMemberType serial_setting_ptr_subset[SERIAL_SETTING_SUBSET_LENGTH];
-extern const ConstantString * const serial_setting_ptr_default;
+extern ConstantString formats_property_name;
+enum{FORMAT_SUBSET_LENGTH=6};
+extern ConstantString format_7e1;
+extern ConstantString format_7o1;
+extern ConstantString format_8n1;
+extern ConstantString format_8n2;
+extern ConstantString format_8e1;
+extern ConstantString format_8o1;
+extern modular_server::SubsetMemberType format_ptr_subset[FORMAT_SUBSET_LENGTH];
+extern const ConstantString * const format_ptr_default;
+
+extern ConstantString line_endings_property_name;
+enum{LINE_ENDING_SUBSET_LENGTH=4};
+extern ConstantString line_ending_none;
+extern ConstantString line_ending_cr;
+extern ConstantString line_ending_lf;
+extern ConstantString line_ending_crlf;
+extern modular_server::SubsetMemberType line_ending_ptr_subset[LINE_ENDING_SUBSET_LENGTH];
+extern const ConstantString * const line_ending_ptr_default;
 
 // Parameters
+extern ConstantString serial_stream_index_parameter_name;
+extern const long serial_stream_index_min;
+
+extern ConstantString data_parameter_name;
 
 // Functions
 extern ConstantString get_serial_stream_count_function_name;
+extern ConstantString get_serial_stream_index_function_name;
+extern ConstantString set_serial_stream_index_function_name;
+extern ConstantString write_function_name;
+extern ConstantString write_read_function_name;
 
 // Callbacks
 

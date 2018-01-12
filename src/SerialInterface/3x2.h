@@ -27,9 +27,11 @@ extern const size_t serial_rx_pins[SERIAL_STREAM_COUNT];
 
 // Properties
 // Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *, (ConstantString *)[]
-extern const long serial_bauds_default[SERIAL_STREAM_COUNT];
+extern const long bauds_default[SERIAL_STREAM_COUNT];
 
-extern const ConstantString * const serial_settings_default[SERIAL_STREAM_COUNT];
+extern const ConstantString * const formats_default[SERIAL_STREAM_COUNT];
+
+extern const ConstantString * const line_endings_default[SERIAL_STREAM_COUNT];
 
 // Parameters
 

@@ -28,14 +28,19 @@ const size_t serial_rx_pins[SERIAL_STREAM_COUNT] =
 // Units
 
 // Properties
-const long serial_bauds_default[SERIAL_STREAM_COUNT] =
+const long bauds_default[SERIAL_STREAM_COUNT] =
   {
-   serial_baud_default,
+   baud_default,
   };
 
-const ConstantString * const serial_settings_default[SERIAL_STREAM_COUNT] =
+const ConstantString * const formats_default[SERIAL_STREAM_COUNT] =
   {
-   serial_setting_ptr_default,
+   format_ptr_default,
+  };
+
+const ConstantString * const line_endings_default[SERIAL_STREAM_COUNT] =
+  {
+   line_ending_ptr_default,
   };
 
 // Parameters
