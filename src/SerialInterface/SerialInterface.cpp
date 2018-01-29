@@ -53,7 +53,6 @@ void SerialInterface::setup()
   modular_server::Property & line_endings_property = modular_server_.createProperty(constants::line_endings_property_name,constants::line_endings_default);
   line_endings_property.setSubset(constants::line_ending_ptr_subset);
   line_endings_property.setArrayLengthRange(constants::SERIAL_STREAM_COUNT,constants::SERIAL_STREAM_COUNT);
-  // line_endings_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<const size_t> *)0,*this,&SerialInterface::resetSerialStreamHandler));
 
   // Parameters
   modular_server::Parameter & serial_stream_index_parameter = modular_server_.createParameter(constants::serial_stream_index_parameter_name);
@@ -119,6 +118,25 @@ Stream & SerialInterface::getSerialStream()
   return *(constants::serial_stream_ptrs[serial_stream_index_]);
 }
 
+char SerialInterface::getLineEnding(const ConstantString * line_ending_ptr)
+{
+  char line_ending = '\n';
+  modular_server_.property(constants::line_endings_property_name).getElementValue(serial_stream_index_,line_ending_ptr);
+  if (line_ending_ptr == &constants::line_ending_cr)
+  {
+    line_ending = '\r';
+  }
+  else if (line_ending_ptr == &constants::line_ending_lf)
+  {
+    line_ending = '\n';
+  }
+  else if (line_ending_ptr == &constants::line_ending_crlf)
+  {
+    line_ending = '\r';
+  }
+  return line_ending;
+}
+
 size_t SerialInterface::write(const char data[])
 {
   size_t bytes_written = getSerialStream().write(data);
@@ -141,30 +159,50 @@ size_t SerialInterface::writeLineEnding()
 {
   size_t bytes_written = 0;
 
-  const ConstantString * line_ending_ptr;
-  modular_server_.property(constants::line_endings_property_name).getElementValue(serial_stream_index_,line_ending_ptr);
-  if (line_ending_ptr == &constants::line_ending_cr)
+  const ConstantString * line_ending_ptr = NULL;
+  char line_ending = getLineEnding(line_ending_ptr);
+
+  bytes_written = writeByte(line_ending);
+  if (line_ending_ptr == &constants::line_ending_crlf)
   {
-    bytes_written = writeByte('\r');
-  }
-  else if (line_ending_ptr == &constants::line_ending_lf)
-  {
-    bytes_written = writeByte('\n');
-  }
-  else if (line_ending_ptr == &constants::line_ending_crlf)
-  {
-    bytes_written = writeByte('\r');
     bytes_written += writeByte('\n');
   }
 
   return bytes_written;
 }
 
-void SerialInterface::writeRead(const char data[],
-                                char response[],
-                                const size_t response_length_max)
+size_t SerialInterface::read(char response[],
+                             const size_t response_length_max)
 {
+  size_t bytes_read = 0;
 
+  const ConstantString * line_ending_ptr = NULL;
+  char line_ending = getLineEnding(line_ending_ptr);
+
+  bytes_read = getSerialStream().readBytesUntil(line_ending,response,response_length_max);
+
+  if (line_ending_ptr == &constants::line_ending_crlf)
+  {
+    // handle this
+    // bytes_read += readBytesUntil('\n');
+  }
+
+  terminateResponse(response,response_length_max,bytes_read);
+
+  return bytes_read;
+}
+
+size_t SerialInterface::writeRead(const char data[],
+                                  char response[],
+                                  const size_t response_length_max)
+{
+  size_t bytes_written = write(data);
+  size_t bytes_read = 0;
+  if (bytes_written > 0)
+  {
+    bytes_read = read(response,response_length_max);
+  }
+  return bytes_read;
 }
 
 long SerialInterface::getSerialStreamBaud(const size_t stream_index)
@@ -218,6 +256,20 @@ byte SerialInterface::getSerialStreamSetting(const size_t stream_index)
   }
 
   return setting;
+}
+
+void SerialInterface::terminateResponse(char response[],
+                                        const size_t response_length_max,
+                                        const size_t bytes_read)
+{
+  if (bytes_read < response_length_max)
+  {
+    response[bytes_read] = '\0';
+  }
+  else if (response_length_max > 0)
+  {
+    response[response_length_max - 1] = '\0';
+  }
 }
 
 // Handlers must be non-blocking (avoid 'delay')
