@@ -27,6 +27,7 @@ const modular_server::FirmwareInfo firmware_info =
 // Interrupts
 
 // Units
+CONSTANT_STRING(millisecond_units,"ms");
 
 // Properties
 CONSTANT_STRING(bauds_property_name,"bauds");
@@ -82,6 +83,11 @@ modular_server::SubsetMemberType line_ending_ptr_subset[LINE_ENDING_SUBSET_LENGT
   {.cs_ptr=&line_ending_crlf},
 };
 const ConstantString * const line_ending_ptr_default = &line_ending_lf;
+
+CONSTANT_STRING(timeouts_property_name,"timeouts");
+const long timeout_min = 1;
+const long timeout_max = 1500;
+const long timeout_default = 1000;
 
 // Parameters
 CONSTANT_STRING(serial_stream_index_parameter_name,"serial_stream_index");

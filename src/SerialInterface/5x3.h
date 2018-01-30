@@ -33,6 +33,8 @@ extern const ConstantString * const formats_default[SERIAL_STREAM_COUNT];
 
 extern const ConstantString * const line_endings_default[SERIAL_STREAM_COUNT];
 
+extern const long timeouts_default[SERIAL_STREAM_COUNT];
+
 // Parameters
 
 // Functions

@@ -16,7 +16,7 @@ namespace serial_interface
 namespace constants
 {
 //MAX values must be >= 1, >= created/copied count, < RAM limit
-enum{PROPERTY_COUNT_MAX=3};
+enum{PROPERTY_COUNT_MAX=4};
 enum{PARAMETER_COUNT_MAX=2};
 enum{FUNCTION_COUNT_MAX=5};
 enum{CALLBACK_COUNT_MAX=1};
@@ -29,6 +29,7 @@ extern const modular_server::FirmwareInfo firmware_info;
 // Interrupts
 
 // Units
+extern ConstantString millisecond_units;
 
 // Properties
 // Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *, (ConstantString *)[]
@@ -56,6 +57,11 @@ extern ConstantString line_ending_lf;
 extern ConstantString line_ending_crlf;
 extern modular_server::SubsetMemberType line_ending_ptr_subset[LINE_ENDING_SUBSET_LENGTH];
 extern const ConstantString * const line_ending_ptr_default;
+
+extern ConstantString timeouts_property_name;
+extern const long timeout_min;
+extern const long timeout_max;
+extern const long timeout_default;
 
 // Parameters
 extern ConstantString serial_stream_index_parameter_name;

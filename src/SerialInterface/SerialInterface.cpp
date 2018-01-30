@@ -54,6 +54,12 @@ void SerialInterface::setup()
   line_endings_property.setSubset(constants::line_ending_ptr_subset);
   line_endings_property.setArrayLengthRange(constants::SERIAL_STREAM_COUNT,constants::SERIAL_STREAM_COUNT);
 
+  modular_server::Property & timeouts_property = modular_server_.createProperty(constants::timeouts_property_name,constants::timeouts_default);
+  timeouts_property.setUnits(constants::millisecond_units);
+  timeouts_property.setRange(constants::timeout_min,constants::timeout_max);
+  timeouts_property.setArrayLengthRange(constants::SERIAL_STREAM_COUNT,constants::SERIAL_STREAM_COUNT);
+  timeouts_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<const size_t> *)0,*this,&SerialInterface::resetSerialStreamHandler));
+
   // Parameters
   modular_server::Parameter & serial_stream_index_parameter = modular_server_.createParameter(constants::serial_stream_index_parameter_name);
   serial_stream_index_parameter.setRange(constants::serial_stream_index_min,(long)(constants::SERIAL_STREAM_COUNT - 1));
@@ -258,6 +264,19 @@ byte SerialInterface::getSerialStreamSetting(const size_t stream_index)
   return setting;
 }
 
+long SerialInterface::getSerialStreamTimeout(const size_t stream_index)
+{
+  if (stream_index >= constants::SERIAL_STREAM_COUNT)
+  {
+    return -1;
+  }
+
+  long timeout;
+  modular_server_.property(constants::timeouts_property_name).getElementValue(stream_index,timeout);
+
+  return timeout;
+}
+
 void SerialInterface::terminateResponse(char response[],
                                         const size_t response_length_max,
                                         const size_t bytes_read)
@@ -295,10 +314,14 @@ void SerialInterface::resetSerialStreamHandler(const size_t stream_index)
   {
     return;
   }
+  constants::serial_stream_ptrs[stream_index]->end();
+
   long baud = getSerialStreamBaud(stream_index);
   byte setting = getSerialStreamSetting(stream_index);
-  constants::serial_stream_ptrs[stream_index]->end();
   constants::serial_stream_ptrs[stream_index]->begin(baud,setting);
+
+  long timeout = getSerialStreamTimeout(stream_index);
+  constants::serial_stream_ptrs[stream_index]->setTimeout(timeout);
 }
 
 void SerialInterface::getSerialStreamCountHandler()

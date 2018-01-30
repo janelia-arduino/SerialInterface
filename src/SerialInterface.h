@@ -67,6 +67,7 @@ private:
 
   long getSerialStreamBaud(const size_t stream_index);
   byte getSerialStreamSetting(const size_t stream_index);
+  long getSerialStreamTimeout(const size_t stream_index);
 
   void terminateResponse(char response[],
                          const size_t response_length_max,
