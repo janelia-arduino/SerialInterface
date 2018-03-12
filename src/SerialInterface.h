@@ -42,7 +42,7 @@ public:
   size_t setSerialStreamIndex(const size_t stream_index);
   Stream & getSerialStream();
 
-  char getLineEnding(const ConstantString * line_ending_ptr);
+  char getLineEnding(const ConstantString * const line_ending_ptr);
 
   size_t write(const char data[]);
   size_t writeBytes(const uint8_t buffer[],

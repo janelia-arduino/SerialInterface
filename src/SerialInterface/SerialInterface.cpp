@@ -124,7 +124,7 @@ Stream & SerialInterface::getSerialStream()
   return *(constants::serial_stream_ptrs[serial_stream_index_]);
 }
 
-char SerialInterface::getLineEnding(const ConstantString * line_ending_ptr)
+char SerialInterface::getLineEnding(const ConstantString * const line_ending_ptr)
 {
   char line_ending = '\n';
   modular_server_.property(constants::line_endings_property_name).getElementValue(serial_stream_index_,line_ending_ptr);
