@@ -7,23 +7,12 @@
 // ----------------------------------------------------------------------------
 #ifndef SERIAL_INTERFACE_H
 #define SERIAL_INTERFACE_H
-#include <Flash.h>
-#include <EEPROM.h>
-#include <Streaming.h>
 #include <ArduinoJson.h>
-#include <JsonSanitizer.h>
 #include <JsonStream.h>
 #include <Array.h>
 #include <Vector.h>
-#include <MemoryFree.h>
 #include <ConstantVariable.h>
-#include <SavedVariable.h>
 #include <Functor.h>
-#include <IndexedContainer.h>
-#include <FunctorCallbacks.h>
-#include <Watchdog.h>
-
-#include <ModularClient.h>
 
 #include <ModularServer.h>
 #include <ModularDeviceBase.h>
@@ -42,7 +31,7 @@ public:
   size_t setSerialStreamIndex(const size_t stream_index);
   Stream & getSerialStream();
 
-  char getLineEnding(const ConstantString * const line_ending_ptr);
+  char getLineEnding(const ConstantString * line_ending_ptr);
 
   size_t write(const char data[]);
   size_t writeBytes(const uint8_t buffer[],
@@ -66,7 +55,7 @@ private:
   size_t serial_stream_index_;
 
   long getSerialStreamBaud(const size_t stream_index);
-  byte getSerialStreamSetting(const size_t stream_index);
+  size_t getSerialStreamSetting(const size_t stream_index);
   long getSerialStreamTimeout(const size_t stream_index);
 
   void terminateResponse(char response[],

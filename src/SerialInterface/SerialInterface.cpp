@@ -124,7 +124,7 @@ Stream & SerialInterface::getSerialStream()
   return *(constants::serial_stream_ptrs[serial_stream_index_]);
 }
 
-char SerialInterface::getLineEnding(const ConstantString * const line_ending_ptr)
+char SerialInterface::getLineEnding(const ConstantString * line_ending_ptr)
 {
   char line_ending = '\n';
   modular_server_.property(constants::line_endings_property_name).getElementValue(serial_stream_index_,line_ending_ptr);
@@ -224,14 +224,14 @@ long SerialInterface::getSerialStreamBaud(const size_t stream_index)
   return baud;
 }
 
-byte SerialInterface::getSerialStreamSetting(const size_t stream_index)
+size_t SerialInterface::getSerialStreamSetting(const size_t stream_index)
 {
   if (stream_index >= constants::SERIAL_STREAM_COUNT)
   {
     return -1;
   }
 
-  byte setting = SERIAL_8N1;
+  size_t setting = SERIAL_8N1;
 
   const ConstantString * setting_ptr;
   modular_server_.property(constants::formats_property_name).getElementValue(stream_index,setting_ptr);
@@ -318,7 +318,7 @@ void SerialInterface::resetSerialStreamHandler(const size_t stream_index)
   constants::serial_stream_ptrs[stream_index]->end();
 
   long baud = getSerialStreamBaud(stream_index);
-  byte setting = getSerialStreamSetting(stream_index);
+  size_t setting = getSerialStreamSetting(stream_index);
   constants::serial_stream_ptrs[stream_index]->begin(baud,setting);
 
   long timeout = getSerialStreamTimeout(stream_index);
