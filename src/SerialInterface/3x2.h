@@ -21,7 +21,7 @@ enum{SERIAL_STREAM_COUNT=1};
 extern HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT];
 extern const size_t serial_rx_pins[SERIAL_STREAM_COUNT];
 
-// Interrupts
+// Pins
 
 // Units
 

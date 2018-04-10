@@ -24,7 +24,7 @@ const modular_server::FirmwareInfo firmware_info =
   .version_patch=0,
 };
 
-// Interrupts
+// Pins
 
 // Units
 CONSTANT_STRING(millisecond_units,"ms");

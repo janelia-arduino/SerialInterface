@@ -26,7 +26,7 @@ extern ConstantString device_name;
 extern ConstantString firmware_name;
 extern const modular_server::FirmwareInfo firmware_info;
 
-// Interrupts
+// Pins
 
 // Units
 extern ConstantString millisecond_units;

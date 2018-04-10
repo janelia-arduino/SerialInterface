@@ -25,7 +25,7 @@ const size_t serial_rx_pins[SERIAL_STREAM_COUNT] =
   47,
 };
 
-// Interrupts
+// Pins
 
 // Units
 
