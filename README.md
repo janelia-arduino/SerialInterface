@@ -2,11 +2,11 @@
 
 Authors:
 
-    Peter Polidoro <polidorop@janelia.hhmi.org>
+Peter Polidoro <polidorop@janelia.hhmi.org>
 
 License:
 
-    BSD
+BSD
 
 ## Ancestors
 
@@ -25,6 +25,32 @@ License:
 ## API NAMES
 
 ```json
+{
+  "id": "getApi",
+  "result": {
+    "firmware": [
+      "SerialInterface"
+    ],
+    "verbosity": "NAMES",
+    "functions": [
+      "getSerialStreamCount",
+      "getSerialStreamIndex",
+      "setSerialStreamIndex",
+      "write",
+      "writeRead"
+    ],
+    "parameters": [
+      "serial_stream_index",
+      "data"
+    ],
+    "properties": [
+      "bauds",
+      "formats",
+      "lineEndings",
+      "timeouts"
+    ]
+  }
+}
 ```
 
 ## API GENERAL
