@@ -16,9 +16,9 @@
 
 * Devices
 
-  [[https://github.com/janelia-modular-devices/modular_device_base.git][modular_device_base]]
+  [[https://github.com/janelia-modular-devices/modular_device_base][modular_device_base]]
 
-  [[https://github.com/janelia-modular-devices/rs232_interface.git][rs232_interface]]
+  [[https://github.com/janelia-modular-devices/rs232_interface][rs232_interface]]
 
 * API NAMES
 
