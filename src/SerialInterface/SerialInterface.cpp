@@ -43,12 +43,12 @@ void SerialInterface::setup()
   modular_server::Property & bauds_property = modular_server_.createProperty(constants::bauds_property_name,constants::bauds_default);
   bauds_property.setSubset(constants::baud_subset);
   bauds_property.setArrayLengthRange(constants::SERIAL_STREAM_COUNT,constants::SERIAL_STREAM_COUNT);
-  bauds_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<const size_t> *)0,*this,&SerialInterface::resetSerialStreamHandler));
+  bauds_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<size_t> *)0,*this,&SerialInterface::resetSerialStreamHandler));
 
   modular_server::Property & formats_property = modular_server_.createProperty(constants::formats_property_name,constants::formats_default);
   formats_property.setSubset(constants::format_ptr_subset);
   formats_property.setArrayLengthRange(constants::SERIAL_STREAM_COUNT,constants::SERIAL_STREAM_COUNT);
-  formats_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<const size_t> *)0,*this,&SerialInterface::resetSerialStreamHandler));
+  formats_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<size_t> *)0,*this,&SerialInterface::resetSerialStreamHandler));
 
   modular_server::Property & line_endings_property = modular_server_.createProperty(constants::line_endings_property_name,constants::line_endings_default);
   line_endings_property.setSubset(constants::line_ending_ptr_subset);
@@ -58,7 +58,7 @@ void SerialInterface::setup()
   timeouts_property.setUnits(constants::millisecond_units);
   timeouts_property.setRange(constants::timeout_min,constants::timeout_max);
   timeouts_property.setArrayLengthRange(constants::SERIAL_STREAM_COUNT,constants::SERIAL_STREAM_COUNT);
-  timeouts_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<const size_t> *)0,*this,&SerialInterface::resetSerialStreamHandler));
+  timeouts_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<size_t> *)0,*this,&SerialInterface::resetSerialStreamHandler));
 
   // Parameters
   modular_server::Parameter & serial_stream_index_parameter = modular_server_.createParameter(constants::serial_stream_index_parameter_name);
@@ -110,7 +110,7 @@ size_t SerialInterface::getSerialStreamIndex()
   return serial_stream_index_;
 }
 
-size_t SerialInterface::setSerialStreamIndex(const size_t stream_index)
+size_t SerialInterface::setSerialStreamIndex(size_t stream_index)
 {
   if (stream_index < constants::SERIAL_STREAM_COUNT)
   {
@@ -151,12 +151,12 @@ size_t SerialInterface::write(const char data[])
 }
 
 size_t SerialInterface::writeBytes(const uint8_t buffer[],
-  const size_t size)
+  size_t size)
 {
   return getSerialStream().write(buffer,size);
 }
 
-size_t SerialInterface::writeByte(const uint8_t byte)
+size_t SerialInterface::writeByte(uint8_t byte)
 {
   return getSerialStream().write(byte);
 }
@@ -178,7 +178,7 @@ size_t SerialInterface::writeLineEnding()
 }
 
 size_t SerialInterface::read(char response[],
-  const size_t response_length_max)
+  size_t response_length_max)
 {
   size_t bytes_read = 0;
 
@@ -200,7 +200,7 @@ size_t SerialInterface::read(char response[],
 
 size_t SerialInterface::writeRead(const char data[],
   char response[],
-  const size_t response_length_max)
+  size_t response_length_max)
 {
   size_t bytes_written = write(data);
   size_t bytes_read = 0;
@@ -211,7 +211,7 @@ size_t SerialInterface::writeRead(const char data[],
   return bytes_read;
 }
 
-long SerialInterface::getSerialStreamBaud(const size_t stream_index)
+long SerialInterface::getSerialStreamBaud(size_t stream_index)
 {
   if (stream_index >= constants::SERIAL_STREAM_COUNT)
   {
@@ -224,7 +224,7 @@ long SerialInterface::getSerialStreamBaud(const size_t stream_index)
   return baud;
 }
 
-size_t SerialInterface::getSerialStreamSetting(const size_t stream_index)
+size_t SerialInterface::getSerialStreamSetting(size_t stream_index)
 {
   if (stream_index >= constants::SERIAL_STREAM_COUNT)
   {
@@ -264,7 +264,7 @@ size_t SerialInterface::getSerialStreamSetting(const size_t stream_index)
   return setting;
 }
 
-long SerialInterface::getSerialStreamTimeout(const size_t stream_index)
+long SerialInterface::getSerialStreamTimeout(size_t stream_index)
 {
   if (stream_index >= constants::SERIAL_STREAM_COUNT)
   {
@@ -278,8 +278,8 @@ long SerialInterface::getSerialStreamTimeout(const size_t stream_index)
 }
 
 void SerialInterface::terminateResponse(char response[],
-  const size_t response_length_max,
-  const size_t bytes_read)
+  size_t response_length_max,
+  size_t bytes_read)
 {
   if (bytes_read < response_length_max)
   {
@@ -309,7 +309,7 @@ void SerialInterface::terminateResponse(char response[],
 // modular_server_.property(property_name).getElementValue(element_index,value) value type must match the property array element default type
 // modular_server_.property(property_name).setElementValue(element_index,value) value type must match the property array element default type
 
-void SerialInterface::resetSerialStreamHandler(const size_t stream_index)
+void SerialInterface::resetSerialStreamHandler(size_t stream_index)
 {
   if (stream_index >= constants::SERIAL_STREAM_COUNT)
   {
