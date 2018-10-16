@@ -34,10 +34,10 @@ void SerialInterface::setup()
 
   // Add Firmware
   modular_server_.addFirmware(constants::firmware_info,
-                              properties_,
-                              parameters_,
-                              functions_,
-                              callbacks_);
+    properties_,
+    parameters_,
+    functions_,
+    callbacks_);
 
   // Properties
   modular_server::Property & bauds_property = modular_server_.createProperty(constants::bauds_property_name,constants::bauds_default);
@@ -151,7 +151,7 @@ size_t SerialInterface::write(const char data[])
 }
 
 size_t SerialInterface::writeBytes(const uint8_t buffer[],
-                                   const size_t size)
+  const size_t size)
 {
   return getSerialStream().write(buffer,size);
 }
@@ -178,7 +178,7 @@ size_t SerialInterface::writeLineEnding()
 }
 
 size_t SerialInterface::read(char response[],
-                             const size_t response_length_max)
+  const size_t response_length_max)
 {
   size_t bytes_read = 0;
 
@@ -199,8 +199,8 @@ size_t SerialInterface::read(char response[],
 }
 
 size_t SerialInterface::writeRead(const char data[],
-                                  char response[],
-                                  const size_t response_length_max)
+  char response[],
+  const size_t response_length_max)
 {
   size_t bytes_written = write(data);
   size_t bytes_read = 0;
@@ -278,8 +278,8 @@ long SerialInterface::getSerialStreamTimeout(const size_t stream_index)
 }
 
 void SerialInterface::terminateResponse(char response[],
-                                        const size_t response_length_max,
-                                        const size_t bytes_read)
+  const size_t response_length_max,
+  const size_t bytes_read)
 {
   if (bytes_read < response_length_max)
   {

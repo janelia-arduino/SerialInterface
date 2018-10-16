@@ -23,32 +23,32 @@
 * API NAMES
 
   #+BEGIN_SRC js
-{
-  "id": "getApi",
-  "result": {
-    "firmware": [
-      "SerialInterface"
-    ],
-    "verbosity": "NAMES",
-    "functions": [
-      "getSerialStreamCount",
-      "getSerialStreamIndex",
-      "setSerialStreamIndex",
-      "write",
-      "writeRead"
-    ],
-    "parameters": [
-      "serial_stream_index",
-      "data"
-    ],
-    "properties": [
-      "bauds",
-      "formats",
-      "lineEndings",
-      "timeouts"
-    ]
-  }
-}
+    {
+      "id": "getApi",
+      "result": {
+        "firmware": [
+          "SerialInterface"
+        ],
+        "verbosity": "NAMES",
+        "functions": [
+          "getSerialStreamCount",
+          "getSerialStreamIndex",
+          "setSerialStreamIndex",
+          "write",
+          "writeRead"
+        ],
+        "parameters": [
+          "serial_stream_index",
+          "data"
+        ],
+        "properties": [
+          "bauds",
+          "formats",
+          "lineEndings",
+          "timeouts"
+        ]
+      }
+    }
   #+END_SRC
 
 * API GENERAL
