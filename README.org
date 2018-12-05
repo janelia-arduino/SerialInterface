@@ -3,22 +3,16 @@
 #+EMAIL: peterpolidoro@gmail.com
 
 * Library Information
-  - Author :: Peter Polidoro
+  - Name :: SerialInterface
+  - Version :: 2.0.0
   - License :: BSD
+  - URL :: https://github.com/janelia-arduino/SerialInterface
+  - Author :: Peter Polidoro
+  - Email :: peterpolidoro@gmail.com
 
-* Ancestors
+** Description
 
-  [[https://github.com/janelia-arduino/ModularServer][ModularServer]]
-
-  [[https://github.com/janelia-arduino/ModularDeviceBase][ModularDeviceBase]]
-
-* Clients
-
-* Devices
-
-  [[https://github.com/janelia-modular-devices/modular_device_base][modular_device_base]]
-
-  [[https://github.com/janelia-modular-devices/rs232_interface][rs232_interface]]
+   Modular device serial interface library.
 
 * API NAMES
 
@@ -44,12 +38,27 @@
         "properties": [
           "bauds",
           "formats",
-          "lineEndings",
+          "writeLineEndings",
+          "readLineEndings",
           "timeouts"
         ]
       }
     }
   #+END_SRC
+
+* Ancestors
+
+  [[https://github.com/janelia-arduino/ModularServer][ModularServer]]
+
+  [[https://github.com/janelia-arduino/ModularDeviceBase][ModularDeviceBase]]
+
+* Clients
+
+* Devices
+
+  [[https://github.com/janelia-modular-devices/modular_device_base][modular_device_base]]
+
+  [[https://github.com/janelia-modular-devices/rs232_interface][rs232_interface]]
 
 * API GENERAL
 

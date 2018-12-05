@@ -16,10 +16,12 @@ namespace serial_interface
 namespace constants
 {
 //MAX values must be >= 1, >= created/copied count, < RAM limit
-enum{PROPERTY_COUNT_MAX=4};
+enum{PROPERTY_COUNT_MAX=5};
 enum{PARAMETER_COUNT_MAX=2};
 enum{FUNCTION_COUNT_MAX=5};
 enum{CALLBACK_COUNT_MAX=1};
+
+enum{SINGLE_CHAR_LENGTH=1};
 
 extern ConstantString device_name;
 
@@ -49,14 +51,18 @@ extern ConstantString format_8o1;
 extern modular_server::SubsetMemberType format_ptr_subset[FORMAT_SUBSET_LENGTH];
 extern const ConstantString * const format_ptr_default;
 
-extern ConstantString line_endings_property_name;
 enum{LINE_ENDING_SUBSET_LENGTH=4};
 extern ConstantString line_ending_none;
 extern ConstantString line_ending_cr;
 extern ConstantString line_ending_lf;
 extern ConstantString line_ending_crlf;
 extern modular_server::SubsetMemberType line_ending_ptr_subset[LINE_ENDING_SUBSET_LENGTH];
-extern const ConstantString * const line_ending_ptr_default;
+
+extern ConstantString write_line_endings_property_name;
+extern const ConstantString * const write_line_ending_ptr_default;
+
+extern ConstantString read_line_endings_property_name;
+extern const ConstantString * const read_line_ending_ptr_default;
 
 extern ConstantString timeouts_property_name;
 extern const long timeout_min;

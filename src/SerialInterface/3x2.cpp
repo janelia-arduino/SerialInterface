@@ -38,9 +38,14 @@ const ConstantString * const formats_default[SERIAL_STREAM_COUNT] =
   format_ptr_default,
 };
 
-const ConstantString * const line_endings_default[SERIAL_STREAM_COUNT] =
+const ConstantString * const write_line_endings_default[SERIAL_STREAM_COUNT] =
 {
-  line_ending_ptr_default,
+  write_line_ending_ptr_default,
+};
+
+const ConstantString * const read_line_endings_default[SERIAL_STREAM_COUNT] =
+{
+  read_line_ending_ptr_default,
 };
 
 const long timeouts_default[SERIAL_STREAM_COUNT] =

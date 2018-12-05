@@ -19,7 +19,7 @@ CONSTANT_STRING(firmware_name,"SerialInterface");
 const modular_server::FirmwareInfo firmware_info =
 {
   .name_ptr=&firmware_name,
-  .version_major=1,
+  .version_major=2,
   .version_minor=0,
   .version_patch=0,
 };
@@ -70,7 +70,6 @@ modular_server::SubsetMemberType format_ptr_subset[FORMAT_SUBSET_LENGTH] =
 };
 const ConstantString * const format_ptr_default = &format_8n1;
 
-CONSTANT_STRING(line_endings_property_name,"lineEndings");
 CONSTANT_STRING(line_ending_none,"NONE");
 CONSTANT_STRING(line_ending_cr,"CR");
 CONSTANT_STRING(line_ending_lf,"LF");
@@ -82,7 +81,12 @@ modular_server::SubsetMemberType line_ending_ptr_subset[LINE_ENDING_SUBSET_LENGT
   {.cs_ptr=&line_ending_lf},
   {.cs_ptr=&line_ending_crlf},
 };
-const ConstantString * const line_ending_ptr_default = &line_ending_lf;
+
+CONSTANT_STRING(write_line_endings_property_name,"writeLineEndings");
+const ConstantString * const write_line_ending_ptr_default = &line_ending_lf;
+
+CONSTANT_STRING(read_line_endings_property_name,"readLineEndings");
+const ConstantString * const read_line_ending_ptr_default = &line_ending_lf;
 
 CONSTANT_STRING(timeouts_property_name,"timeouts");
 const long timeout_min = 1;

@@ -50,9 +50,13 @@ void SerialInterface::setup()
   formats_property.setArrayLengthRange(constants::SERIAL_STREAM_COUNT,constants::SERIAL_STREAM_COUNT);
   formats_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<size_t> *)0,*this,&SerialInterface::resetSerialStreamHandler));
 
-  modular_server::Property & line_endings_property = modular_server_.createProperty(constants::line_endings_property_name,constants::line_endings_default);
-  line_endings_property.setSubset(constants::line_ending_ptr_subset);
-  line_endings_property.setArrayLengthRange(constants::SERIAL_STREAM_COUNT,constants::SERIAL_STREAM_COUNT);
+  modular_server::Property & write_line_endings_property = modular_server_.createProperty(constants::write_line_endings_property_name,constants::write_line_endings_default);
+  write_line_endings_property.setSubset(constants::line_ending_ptr_subset);
+  write_line_endings_property.setArrayLengthRange(constants::SERIAL_STREAM_COUNT,constants::SERIAL_STREAM_COUNT);
+
+  modular_server::Property & read_line_endings_property = modular_server_.createProperty(constants::read_line_endings_property_name,constants::read_line_endings_default);
+  read_line_endings_property.setSubset(constants::line_ending_ptr_subset);
+  read_line_endings_property.setArrayLengthRange(constants::SERIAL_STREAM_COUNT,constants::SERIAL_STREAM_COUNT);
 
   modular_server::Property & timeouts_property = modular_server_.createProperty(constants::timeouts_property_name,constants::timeouts_default);
   timeouts_property.setUnits(constants::millisecond_units);
@@ -124,23 +128,16 @@ Stream & SerialInterface::getSerialStream()
   return *(constants::serial_stream_ptrs[serial_stream_index_]);
 }
 
-char SerialInterface::getLineEnding(const ConstantString * line_ending_ptr)
+char SerialInterface::getWriteLineEnding(const ConstantString * write_line_ending_ptr)
 {
-  char line_ending = '\n';
-  modular_server_.property(constants::line_endings_property_name).getElementValue(serial_stream_index_,line_ending_ptr);
-  if (line_ending_ptr == &constants::line_ending_cr)
-  {
-    line_ending = '\r';
-  }
-  else if (line_ending_ptr == &constants::line_ending_lf)
-  {
-    line_ending = '\n';
-  }
-  else if (line_ending_ptr == &constants::line_ending_crlf)
-  {
-    line_ending = '\r';
-  }
-  return line_ending;
+  modular_server_.property(constants::write_line_endings_property_name).getElementValue(serial_stream_index_,write_line_ending_ptr);
+  return lineEndingToChar(write_line_ending_ptr);
+}
+
+char SerialInterface::getReadLineEnding(const ConstantString * read_line_ending_ptr)
+{
+  modular_server_.property(constants::read_line_endings_property_name).getElementValue(serial_stream_index_,read_line_ending_ptr);
+  return lineEndingToChar(read_line_ending_ptr);
 }
 
 size_t SerialInterface::write(const char data[])
@@ -165,11 +162,16 @@ size_t SerialInterface::writeLineEnding()
 {
   size_t bytes_written = 0;
 
-  const ConstantString * line_ending_ptr = NULL;
-  char line_ending = getLineEnding(line_ending_ptr);
+  const ConstantString * write_line_ending_ptr = NULL;
+  char write_line_ending_char = getWriteLineEnding(write_line_ending_ptr);
 
-  bytes_written = writeByte(line_ending);
-  if (line_ending_ptr == &constants::line_ending_crlf)
+  if (write_line_ending_ptr == &constants::line_ending_none)
+  {
+    return bytes_written;
+  }
+
+  bytes_written = writeByte(write_line_ending_char);
+  if (write_line_ending_ptr == &constants::line_ending_crlf)
   {
     bytes_written += writeByte('\n');
   }
@@ -182,15 +184,22 @@ size_t SerialInterface::read(char response[],
 {
   size_t bytes_read = 0;
 
-  const ConstantString * line_ending_ptr = NULL;
-  char line_ending = getLineEnding(line_ending_ptr);
+  const ConstantString * read_line_ending_ptr = NULL;
+  char read_line_ending_char = getReadLineEnding(read_line_ending_ptr);
 
-  bytes_read = getSerialStream().readBytesUntil(line_ending,response,response_length_max);
-
-  if (line_ending_ptr == &constants::line_ending_crlf)
+  if (read_line_ending_ptr != &constants::line_ending_none)
   {
-    // handle this
-    // bytes_read += readBytesUntil('\n');
+    bytes_read = getSerialStream().readBytesUntil(read_line_ending_char,response,response_length_max);
+  }
+  else
+  {
+    bytes_read = getSerialStream().readBytes(response,response_length_max);
+  }
+
+  char single_char[constants::SINGLE_CHAR_LENGTH];
+  if (read_line_ending_ptr == &constants::line_ending_crlf)
+  {
+    getSerialStream().readBytes(single_char,constants::SINGLE_CHAR_LENGTH);
   }
 
   terminateResponse(response,response_length_max,bytes_read);
@@ -209,6 +218,24 @@ size_t SerialInterface::writeRead(const char data[],
     bytes_read = read(response,response_length_max);
   }
   return bytes_read;
+}
+
+char SerialInterface::lineEndingToChar(const ConstantString * line_ending_ptr)
+{
+  char line_ending_char = '\n';
+  if (line_ending_ptr == &constants::line_ending_cr)
+  {
+    line_ending_char = '\r';
+  }
+  else if (line_ending_ptr == &constants::line_ending_lf)
+  {
+    line_ending_char = '\n';
+  }
+  else if (line_ending_ptr == &constants::line_ending_crlf)
+  {
+    line_ending_char = '\r';
+  }
+  return line_ending_char;
 }
 
 long SerialInterface::getSerialStreamBaud(size_t stream_index)

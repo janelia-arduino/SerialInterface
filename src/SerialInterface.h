@@ -31,7 +31,8 @@ public:
   size_t setSerialStreamIndex(size_t stream_index);
   Stream & getSerialStream();
 
-  char getLineEnding(const ConstantString * line_ending_ptr);
+  char getWriteLineEnding(const ConstantString * write_line_ending_ptr);
+  char getReadLineEnding(const ConstantString * read_line_ending_ptr);
 
   size_t write(const char data[]);
   size_t writeBytes(const uint8_t buffer[],
@@ -45,6 +46,10 @@ public:
   size_t writeRead(const char data[],
     char response[],
     size_t response_length_max);
+
+protected:
+
+  virtual char lineEndingToChar(const ConstantString * line_ending_ptr);
 
 private:
   modular_server::Property properties_[serial_interface::constants::PROPERTY_COUNT_MAX];
