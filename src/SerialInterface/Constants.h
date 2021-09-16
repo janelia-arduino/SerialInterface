@@ -3,7 +3,7 @@
 //
 //
 // Authors:
-// Peter Polidoro peterpolidoro@gmail.com
+// Peter Polidoro peter@polidoro.io
 // ----------------------------------------------------------------------------
 #ifndef SERIAL_INTERFACE_CONSTANTS_H
 #define SERIAL_INTERFACE_CONSTANTS_H
