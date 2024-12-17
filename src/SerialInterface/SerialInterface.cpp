@@ -5,7 +5,7 @@
 // Authors:
 // Peter Polidoro peter@polidoro.io
 // ----------------------------------------------------------------------------
-#include "../SerialInterface.h"
+#include "SerialInterface.h"
 
 
 using namespace serial_interface;
